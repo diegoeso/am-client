@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Contrato;
+use App\Models\Contrato;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -88,6 +88,7 @@ class User extends Authenticatable
         'autorizo',
         'alerta_enviada',
         'redes_sociales',
+        'system_register',
     ];
 
     /**

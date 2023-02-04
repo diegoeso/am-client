@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Pago;
+use App\Models\Pago;
 use Carbon\Carbon;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Database\Eloquent\Model;

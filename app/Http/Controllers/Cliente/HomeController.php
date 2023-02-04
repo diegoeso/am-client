@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Cliente;
 
-use App\Contrato;
+use App\Models\Contrato;
 use App\Helpers\PagosHelper;
 use App\Http\Controllers\Controller;
-use App\Pago;
+use App\Models\Pago;
 use Auth;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;

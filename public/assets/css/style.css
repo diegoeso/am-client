@@ -3667,7 +3667,7 @@ ul {
 /* line 2, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_footer.scss */
 
 .footer-area {
-    background-color: #162b45;
+    background-color: #ff643f;
     padding: 130px 0px 0px;
     position: relative;
 }
@@ -3967,9 +3967,10 @@ ul {
 /* line 220, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_footer.scss */
 
 .footer-area .copyright_part_text {
-    background-color: #08223a;
+    background-color: #fb1a1a;
     padding: 32px 15px;
     margin-top: 95px;
+    color: white;
 }
 /* line 224, /Applications/MAMP/htdocs/palash/cl/july 2019/193 Travel/193 travel html/sass/_footer.scss */
 

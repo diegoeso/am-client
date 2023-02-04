@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Cliente;
 
-use App\Contrato;
+use App\Models\Contrato;
 use App\Http\Controllers\Controller;
-use App\Pago;
+use App\Models\Pago;
 use Auth;
 use Carbon\Carbon;
 use DB;

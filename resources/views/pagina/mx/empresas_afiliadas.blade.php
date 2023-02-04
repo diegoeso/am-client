@@ -12,7 +12,7 @@
 </style>
 <div class="container">
     <div class="section_tittle">
-        <h2 class="text-center">
+        <h2 class="text-center text-danger">
             Empresas Afiliadas
         </h2>
         <p class="text-justify">
@@ -30,8 +30,8 @@
             <div class="col-md-12">
                 <p>
                     Si tu empresa todavía aún no cuenta con nuestros beneficios, envíanos un correo a
-                    <a href="mailto:guadalupea@beneficiosvacacionales.mx">
-                        Guadalupe Arevalo
+                    <a href="mailto:info@amandoamexico.com.mx">
+                        info@amandoamexico.com.mx
                     </a>
                 </p>
             </div>

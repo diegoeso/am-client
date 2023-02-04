@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-sm-4 col-md-4">
-                <img alt="" class="img-fluid" src="{{ asset('images/mis_beneficios.png') }}">
+                <img alt="" class="img-fluid" src="{{ asset('images/am/logo_am.png') }}">
                 </img>
                 <div class="single-footer-widget footer_icon mt-3">
                     {{--
@@ -14,24 +14,18 @@
                         Heriberto Frías #408, Interior 3, Colonia Narvarte Poniente CDMX. CP: 03020
                     </p>
 
-                    <span>
+                    <span class="text-white">
                         Teléfono sin costo desde el interior:
-                        <br/>
-                        <a href="tel:5589263266">
-                            5589263266
-                        </a>
-                        <br/>
-                        <a href="tel:5541708423">
+                        <a href="tel:5541708423" class="text-white">
                             5541708423
                         </a>
                     </span>
-
                     <div class="social-icons">
-                        <a href="https://www.facebook.com/Misbeneficiosvacacionales" target="_blank">
+                        <a href="https://www.facebook.com/amandoamexicoficial" target="_blank">
                             <i class="ti-facebook">
                             </i>
                         </a>
-                        <a href="https://www.instagram.com/misbeneficios_vacacionalesmx/" target="_blank">
+                        <a href="https://www.instagram.com/amandoamexico_/" target="_blank">
                             <i class="ti-instagram">
                             </i>
                         </a>
@@ -39,7 +33,7 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-4">
-              <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMisbeneficiosvacacionales&tabs=timeline&width=0&height=0&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="0" height="0" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+             <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Famandoamexicoficial&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=758684681966172" width="340" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
             </div>
             <div class="col-sm-6 col-md-4">
 
@@ -107,29 +101,17 @@
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-lg-12">
-                <div class="copyright_part_text text-center">
-                    <p class="footer-text m-0">
+                <div class="copyright_part_text text-center" >
+                    <p class="footer-text m-0 text-white">
                         Copyright ©
                         <script>
                             document.write(new Date().getFullYear());
                         </script>
-                        @if (env('APP_PAIS')=='mx')
-                                :: Todos los Derechos Reservados
-                        <b>
+                        :: Todos los Derechos Reservados
+                        <b class="text-success">
                             {{ env('APP_NAME') }}
                         </b>
-                        @else
-                               All rights reserved
-                               @if (env('APP_ID') == 'optucorp')
-                        <b>
-                            {{ env('APP_NAME_OPT') }}
-                        </b>
-                        @else
-                        <b>
-                            {{ env('APP_NAME_USA') }}
-                        </b>
-                        @endif
-                        @endif
+                        
                     </p>
                 </div>
             </div>

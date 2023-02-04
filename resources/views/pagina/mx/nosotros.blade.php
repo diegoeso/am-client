@@ -1,13 +1,13 @@
 @extends('layouts.pagina.app')
 @section('content')
-<section class="breadcrumb breadcrumb_bg" style="background-image: url(https://assets.entrepreneur.com/content/3x2/2000/20181022170837-gobierno-corporativo.jpeg);">
+<section class="breadcrumb breadcrumb_bg" style="background-image: url({{ asset('images/banner_am.png') }});">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb_iner">
                     <div class="breadcrumb_iner_item text-center">
                         <h2>
-                            ¿Quienes somos?
+                            {{-- ¿Quienes somos? --}}
                         </h2>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 d-flex align-items-center">
-                        <img alt="" class="img-fluid" src="{{ asset('images/icono02.png') }}">
+                        <img alt="" class="img-fluid" src="{{ asset('images/am/icono.png') }}">
                         </img>
                     </div>
                 </div>

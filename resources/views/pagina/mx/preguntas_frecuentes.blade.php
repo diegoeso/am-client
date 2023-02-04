@@ -1,14 +1,14 @@
 @extends('layouts.pagina.app')
-<style>
+{{-- <style>
     .breadcrumb_faq {
         background-image: url("{{ asset('images/eu/faq.jpg') }}");
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
     }
-</style>
+</style> --}}
 @section('content')
-<section class="breadcrumb breadcrumb_bg" style="background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.outletdeviajes.mx%2Fwp-content%2Fuploads%2F2019%2F10%2FLOS-CABOS-1.jpg&f=1&nofb=1);">
+<section class="breadcrumb breadcrumb_bg" style="background-image: url('https://prod-be-palace-brand.s3.amazonaws.com/pb_Mod_Dest_hero_3600x1800_LOS_CABOS_ad48ab5434.jpg');">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -26,7 +26,7 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="alert alert-primary" style="background-color:#008dc7;">
+            <p class="alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample1" aria-expanded="true" c="" data-toggle="collapse" href="#collapseExample1" lass="" role="button" style="color:white">
                     1.- ¿Cómo se generan mis descuentos?
                 </a>
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="alert alert-primary" style="background-color:#008dc7;">
+            <p class="alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample2" aria-expanded="false" class="" data-toggle="collapse" href="#collapseExample2" role="button" style="color:white">
                     2.- ¿Puedo viajar de inmediato?
                 </a>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="alert alert-primary" style="background-color:#008dc7;">
+            <p class="alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample3" aria-expanded="false" class="" data-toggle="collapse" href="#collapseExample3" role="button" style="color:white">
                     3.- ¿Cómo puedo obtener el beneficio de los planes vacaciones?
                 </a>
@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="alert alert-primary" style="background-color:#008dc7;">
+            <p class="alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample4" aria-expanded="false" class="" data-toggle="collapse" href="#collapseExample4" role="button" style="color:white">
                     4.- ¿Por qué no incluye transporte?
                 </a>
@@ -84,7 +84,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="alert alert-primary" style="background-color:#008dc7;">
+            <p class="alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample5" aria-expanded="false" class="" data-toggle="collapse" href="#collapseExample5" role="button" style="color:white">
                     5.- ¿Cuál es la vigencia de mi contrato?
                 </a>
@@ -92,13 +92,13 @@
             <div class="collapse show" id="collapseExample5">
                 <div class="card card-body">
                     <p class="text-justify">
-                        La vigencia de su contrato es de un año e inicia a partir de su primer descuento.
+                        La vigencia de su contrato es de un año y medio e inicia a partir de su primer descuento.
                     </p>
                 </div>
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="mb-2 alert alert-primary" style="background-color:#008dc7;">
+            <p class="mb-2 alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample6" aria-expanded="false" class="" data-toggle="collapse" href="#collapseExample6" role="button" style="color:white">
                     6.- ¿Qué pasa si se caduca mi paquete?
                 </a>
@@ -112,7 +112,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="mb-2 alert alert-primary" style="background-color:#008dc7;">
+            <p class="mb-2 alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample7" aria-expanded="false" class=" " data-toggle="collapse" href="#collapseExample7" role="button" style="color:white">
                     7.-¿Cómo se calcula el reajuste de tarifa?
                 </a>
@@ -126,7 +126,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="mb-2 alert alert-primary" style="background-color:#008dc7;">
+            <p class="mb-2 alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample8" aria-expanded="false" class=" " data-toggle="collapse" href="#collapseExample8" role="button" style="color:white">
                     8.- ¿Cuál es el proceso para reservar?
                 </a>
@@ -134,7 +134,10 @@
             <div class="collapse show " id="collapseExample8">
                 <div class="card card-body">
                     <p class="text-justify">
-                        <ul>
+                       <a href="{{ route('tuto_reserva') }}">
+                            Ver tutorial de como realizar tu reservacion en linea.
+                        </a>
+                       {{--  <ul>
                             <li>
                                 Llenar la papeleta de reservación, enviar al correo:
                                 <a href="mailto:reservacionescorporativo@beneficiosvacacionales.mx">
@@ -152,13 +155,13 @@
                             <li>
                                 Toda la información del proceso de tu reservación se te enviara por correo electrónico.
                             </li>
-                        </ul>
+                        </ul> --}}
                     </p>
                 </div>
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="mb-2 alert alert-primary" style="background-color:#008dc7;">
+            <p class="mb-2 alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample9" aria-expanded="false" class=" " data-toggle="collapse" href="#collapseExample9" role="button" style="color:white">
                     9.- ¿A partir de qué edad se considera un adulto en el hotel?
                 </a>
@@ -172,7 +175,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="mb-2 alert alert-primary" style="background-color:#008dc7;">
+            <p class="mb-2 alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample10" aria-expanded="false" clas="" data-toggle="collapse" href="#collapseExample10" role="button" s=" " style="color:white">
                     10.-                    ¿Puedo cambiar a los menores por un adulto extra?
                 </a>
@@ -186,7 +189,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="mb-2 alert alert-primary" style="background-color:#008dc7;">
+            <p class="mb-2 alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample11" aria-expanded="false" clas="" data-toggle="collapse" href="#collapseExample11" role="button" s=" " style="color:white">
                     11.- ¿Cuáles son los horarios de entrada y salida de los hoteles?
                 </a>
@@ -204,7 +207,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="mb-2 alert alert-primary" style="background-color:#008dc7;">
+            <p class="mb-2 alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample12" aria-expanded="false" clas="" data-toggle="collapse" href="#collapseExample12" role="button" s=" " style="color:white">
                     12.- ¿Qué pasa si llego más temprano al hotel?
                 </a>
@@ -218,7 +221,7 @@
             </div>
         </div>
         <div class="col-md-12 mt-1 mb-3 btn-block wow bounceInRight text-justify" style="visibility: visible; animation-name: bounceInRight;">
-            <p class="mb-2 alert alert-primary" style="background-color:#008dc7;">
+            <p class="mb-2 alert alert-primary" style="background-color:#fb1a1a;">
                 <a aria-controls="collapseExample13" aria-expanded="false" clas="" data-toggle="collapse" href="#collapseExample13" role="button" s=" " style="color:white">
                     13.- ¿Cómo me confirman que mi reservación esta lista?
                 </a>

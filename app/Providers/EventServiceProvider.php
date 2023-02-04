@@ -12,11 +12,27 @@ class EventServiceProvider extends ServiceProvider
     /**
      * The event listener mappings for the application.
      *
-     * @var array<class-string, array<int, class-string>>
+     * @var array
      */
     protected $listen = [
-        Registered::class => [
+        Registered::class           => [
             SendEmailVerificationNotification::class,
+        ],
+
+        'App\Events\CreateUser'     => [
+            'App\Listeners\UserCreate',
+        ],
+
+        'App\Events\CreateCard'     => [
+            'App\Listeners\CardCreate',
+        ],
+
+        'App\Events\CreateCardUsa'  => [
+            'App\Listeners\CardCreateUsa',
+        ],
+
+        'App\Events\CreateContrato' => [
+            'App\Listeners\ContratoCreate',
         ],
     ];
 
@@ -27,6 +43,8 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        parent::boot();
+
         //
     }
 }

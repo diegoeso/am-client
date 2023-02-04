@@ -264,11 +264,11 @@
                                         <img alt="iVoy" border="0" src="{{ env('STORAGE') }}/shared/home_pictures/es/Mesa_de_trabajo_32-min.png"/>
                                     </a>
                                 </div>
-                                <div class="carousel-item">
+                           {{--      <div class="carousel-item">
                                     <a href="/productos/mxpepsico" title="frisa">
                                         <img alt="Grupo Frisa" border="0" src="{{ env('STORAGE') }}/shared/home_pictures/es/Mesa_de_trabajo_33-min.png"/>
                                     </a>
-                                </div>
+                                </div> --}}
                                 <div class="carousel-item">
                                     <a href="/productos/mxschnellecke" title="ECI">
                                         <img alt="ECI" border="0" src="{{ env('STORAGE') }}/shared/home_pictures/es/Mesa_de_trabajo_34-min.png"/>

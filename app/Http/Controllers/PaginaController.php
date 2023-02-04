@@ -79,7 +79,6 @@ class PaginaController extends Controller
         }
     }
 
-
     public function acapulco($convenio = null, $producto = null, $producto2 = null)
     {
 
@@ -289,5 +288,27 @@ class PaginaController extends Controller
             $tipo = 'modulo_7.jpg';
         }
         return view('pagina.mx.demo_flyer', compact('tipo'));
+    }
+
+    /**
+     * Autor: Isw. Diego Enrique Sanchez
+     * Creado; 2023-01-30
+     * Mostramos la iformacion de la estancia de grupo de acapulco recibiendo las fecha en la que quiere viajar y el titulo de la imagen seleccionada para mostrarla en detalles
+     * @param  [type] $title
+     * @param  [type] $fecha
+     * @param  [type] $segmentos
+     * @return view
+     */
+    public function grupo_acapulco($title, $fecha, $segmentos = null)
+    {
+        if (env('APP_ENV') == 'local') {
+
+            $estancia_id = 37742;
+        } else {
+            $estancia_id = 37741;
+        }
+
+        $estancia = Estancia::findOrFail($estancia_id);
+        return view('pagina.mx.detalle_grupo', compact('estancia', 'title', 'fecha'));
     }
 }

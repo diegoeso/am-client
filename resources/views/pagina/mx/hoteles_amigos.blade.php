@@ -1,7 +1,7 @@
 @extends('layouts.pagina.app')
 
 @section('content')
-<section class="breadcrumb breadcrumb_bg" style="background-image: url('https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.fullviajes.net%2Fwp-content%2Fuploads%2F2017%2F05%2Fiberostar-cancun-con-full-viajes.jpg&f=1&nofb=1');">
+<section class="breadcrumb breadcrumb_bg" style="background-image: url('https://destinationlesstravel.com/wp-content/uploads/2022/05/Birds-eye-view-of-the-Cancun-Hotel-zone-on-a-beautiful-day.jpg');">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -31,8 +31,8 @@
                     <aside class="single_sidebar_widget tag_cloud_widget">
                         <h4 class="widget_title">
                             Llámanos para inscribirte al beneficio si tu empresa tiene convenio con
-                            <b>
-                                Mis Beneficios Vacacionales
+                            <b class="text-success">
+                                {{ env('APP_NAME') }}
                             </b>
                         </h4>
                         <ul class="list">
@@ -56,9 +56,9 @@
                         </h4>
                         <ul class="list">
                             <li>
-                                <a class="d-flex" href="mailto:reservacionescorporativo@beneficiosvacacionales.mx">
+                                <a class="d-flex" href="mailto:reservacionescorporativo@amandoamexico.com.mx">
                                     <small>
-                                        reservacionescorporativo@beneficiosvacacionales.mx
+                                        reservacionescorporativo@amandoamexico.com.mx
                                     </small>
                                 </a>
                             </li>
@@ -84,13 +84,13 @@
                         </h4>
                         <ul class="list">
                             <li>
-                                <a class="d-flex" href="mailto:atencionalcliente@beneficiosvacacionales.mx">
-                                    atencionalcliente@beneficiosvacacionales.mx
+                                <a class="d-flex" href="mailto:atencionalcliente@amandoamexico.com.mx">
+                                    atencionalcliente@amandoamexico.com.mx
                                 </a>
                             </li>
                             <li>
-                                <a class="d-flex" href="mailto:claudia.munoz@beneficiosvacacionales.mx">
-                                    claudia.munoz@beneficiosvacacionales.mx
+                                <a class="d-flex" href="mailto:claudia.munoz@amandoamexico.com.mx">
+                                    claudia.munoz@amandoamexico.com.mx
                                 </a>
                             </li>
                             <li>

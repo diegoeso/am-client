@@ -2,17 +2,16 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Carbon\Carbon;
-use Illuminate\Pagination\Paginator;
 use App\Models\Banco;
 use App\Models\Convenio;
 use App\Models\Destino;
 use App\Models\Estancia;
-use App\Observers\ReservacionObserver;
 use App\Models\Pais;
 use App\Models\Region;
 use App\Models\Reservacion;
+use Carbon\Carbon;
+use Illuminate\Support\ServiceProvider;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -41,6 +40,13 @@ class AppServiceProvider extends ServiceProvider
         ini_set('max_execution_time', 360000);
         session(['unlock_cards' => false]);
         $this->register_mx();
+        view()->composer('*', function ($view) {
+            $info_grupo = $this->get_grupos();
+            $view->with([
+                'info_grupo' => $info_grupo,
+            ]);
+        });
+
         view()->composer('admin.*', function ($view) {
             /**
              * Carga de datos
@@ -52,6 +58,7 @@ class AppServiceProvider extends ServiceProvider
             $destinos         = $this->destinos();
             $paises           = $this->paises();
             $convenios_mx     = $this->convenios_mx();
+            // $info_grupo       = $this->get_grupos();
 
             /**
              * carga de datos estatitos para el funcionamiento de algunas funciones de
@@ -213,10 +220,10 @@ class AppServiceProvider extends ServiceProvider
                 'filtros_fecha'        => $filtros_fecha,
                 'tipo_garantia'        => $tipo_garantia,
                 'convenios'            => $convenios_mx,
+                // 'info_grupo'           => $info_grupo,
             ]);
         });
     }
-
 
     /**
      * Autor: ISW. Diego Enrique Sanchez
@@ -359,4 +366,16 @@ class AppServiceProvider extends ServiceProvider
         return $paises_g;
     }
 
+    public function get_grupos()
+    {
+        $info_grupo = array(
+            '37742' => array(
+                'infante' => 1280,
+                'menor'   => 3570,
+                'adulto'  => 6970,
+            ),
+        );
+
+        return $info_grupo;
+    }
 }

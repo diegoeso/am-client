@@ -30,21 +30,21 @@
             <div class="row justify-content-center">
                 <div class="col-xl-12">
                     <div class="section_tittle">
-                        <h2 class="text-danger">
-                            Bienvenido {{($convenio->empresa_nombre != 'Cliente MX Referido 2018') ? $convenio->empresa_nombre : 'a Amando a México'}}
+                        <h2 class="text-danger text-center">
+                            Bienvenido a {{ env('APP_NAME') }} y  conozcamos juntos Acapulco, un paraíso mexicano.
                         </h2>
                         <p>
                             ¿Por qué debo registrarme a este beneficio?
                         <ul class="list-unstyled">
                             <li>
-                                Confia en nuestra marca, tu compañia lo hizo primero.
+                                Confía en nuestra marca, tu compañia lo hizo primero.
                             </li>
                             <li>
                                 NO verificamos historial crediticio.
                             </li>
-                            <li>
+                         {{--    <li>
                                 Regístrate ahora decide fecha y destino después
-                            </li>
+                            </li> --}}
                             <li>
                                 Paga a plazos con CERO intereses
                             </li>
@@ -58,57 +58,55 @@
                     <div class="row justify-content-center">
                         <div class="col-md-12 heading-section text-center ftco-animate">
                             <h2 class="mb-4_ text-uppercase text-info">
-                                Selecciona tu destino
+                                Selecciona tu fecha ideal
                             </h2>
                         </div>
                     </div>
                     <div class="row justify-content-center">
-                        <div class="col-lg-3 col-md-4 col-sm-6 ftco-animate mb-3">
+                        <div class="col-lg-4 col-md-4 col-sm-6 ftco-animate mb-3">
                             <div class="project-destination">
-                                <a class="img" href="{{ route('nacionales') }}" style="background-image: url(https://leosystem.travel/wp-content/uploads/2020/08/1061776562.jpg);">
-                                    <div class="text">
+                                <a class="img" href="{{ route('grupo.acapulco',['junio', '2023-06-22'] ) }}" style="background-image: url({{ asset('images/acapulco_jun.png') }});">
+                                  {{--   <div class="text">
                                     <span>
-                                        Destinos Nacionales
+                                        Seleccionar
                                     </span>
-                                    </div>
+                                    </div> --}}
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 ftco-animate mb-3">
+                        <div class="col-lg-4 col-md-4 col-sm-6 ftco-animate mb-3">
                             <div class="project-destination">
-                                <a class="img" href="{{ route('internacionales') }}" style="background-image: url(https://u.realgeeks.media/mykeybrokers/Miami_BEach.jpg);">
-                                    <div class="text">
+                                <a class="img" href="{{ route('grupo.acapulco',['septiembre', '2023-09-21'] ) }}" style="background-image: url({{ asset('images/acapulco_sep.png') }});">
+                                  {{--   <div class="text">
                                     <span>
-                                        Destinos Internacionales
+                                        Seleccionar
                                     </span>
-                                    </div>
+                                    </div> --}}
                                 </a>
                             </div>
                         </div>
-                        {{--
-                        <div class="col-lg-3 col-md-4 col-sm-6 ftco-animate mb-3">
+                        <div class="col-lg-4 col-md-4 col-sm-6 ftco-animate mb-3">
                             <div class="project-destination">
-                                <a class="img" href="{{ route('cruceros') }}" style="background-image: url(http://www.miramarcruceros.com/blog/wp-content/uploads/2016/03/RN-Exterior.jpg);">
-                                    <div class="text">
+                                <a class="img" href="{{ route('grupo.acapulco',['noviembre', '2023-11-09'] ) }}" style="background-image: url({{ asset('images/acapulco_nov.png') }});">
+                                   {{--  <div class="text">
                                         <span>
-                                            Cruceros
+                                            Seleccionar
                                         </span>
-                                    </div>
+                                    </div> --}}
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 ftco-animate mb-3">
+                        <div class="col-lg-4 col-md-4 col-sm-6 ftco-animate mb-3">
                             <div class="project-destination">
-                                <a class="img" href="{{ route('cotizador') }}" style="background-image: url(https://dicas.viagempronta.com/wp-content/uploads/2020/01/Iberostar-Punta-Cana.jpg);">
-                                    <div class="text">
+                                <a class="img" href="{{ route('grupo.acapulco',['diciembre', '2023-12-14'] ) }}" style="background-image: url({{ asset('images/acapulco_dic.png') }});">
+                                {{--     <div class="text">
                                         <span>
-                                            Cotizador
+                                            Seleccionar
                                         </span>
-                                    </div>
+                                    </div> --}}
                                 </a>
                             </div>
                         </div>
-                        --}}
                     </div>
                 </div>
             </section>

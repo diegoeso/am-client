@@ -14,13 +14,7 @@
                         <ul class="navbar-nav">
                             <li class="nav-item dropdown">
                                 <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ route('nosotros') }}" id="navbarDropdown" role="button">
-                                    {{--
-                                    <strong>
-                                        --}}
-                                        Nosotros
-                                    {{--
-                                    </strong>
-                                    --}}
+                                    Nosotros
                                 </a>
                                 <div aria-labelledby="navbarDropdown" class="dropdown-menu justify-content-center">
                                     <a class="dropdown-item" href="{{ route('nosotros') }}">
@@ -29,16 +23,8 @@
                                     <a class="dropdown-item" href="{{ route('fraude') }}">
                                         Alerta de fraude
                                     </a>
-                                    {{--
-                                    <a class="dropdown-item" href="{{ route('mision') }}">
-                                        Mision y Valores
-                                    </a>
-                                    --}}
                                     <a class="dropdown-item" href="{{ route('preguntas') }}">
                                         Preguntas frecuentes
-                                    </a>
-                                    <a class="dropdown-item" href="https://bolsa.misbeneficiosvacacionales.com/" target="_blank">
-                                        Bolsa de trabajo
                                     </a>
                                 </div>
                             </li>
@@ -55,7 +41,7 @@
                                     <a class="dropdown-item" href="{{ route('login') }}">
                                         Familia
                                         <b>
-                                            MBV
+                                            Amando a México
                                         </b>
                                     </a>
                                     <a class="dropdown-item" href="{{ route('beneficios_empresa') }}">

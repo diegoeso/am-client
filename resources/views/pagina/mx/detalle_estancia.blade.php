@@ -195,25 +195,6 @@
                     </div>
                 </form>
             </div>
-            @guest()
-            <div class="col-lg-5 col-md-12">
-                <div class="row justify-content-center">
-                    <div class="col-md-12 heading-section text-center ftco-animate">
-                        <h4 class="mb-4_ text-uppercase text-info">
-                            {{ env('APP_NAME') }}
-                        </h4>
-                        <p class="text-justify" id="text_card">
-                            {{ env('APP_NAME') }} tiene presencia en Estados Unidos, México, España e India.
-                                Estamos comprometidos con la fuerza de trabajo promoviendo el turismo nacional. Durante los
-                                últimos 15 años nos hemos asociado con empresas líderes mundiales para ofrecer a sus
-                                empleados un plan único de beneficios, la maravillosa oportunidad de viajar.
-                        </p>
-                    </div>
-                    <img alt="" class="img-fluid" src="{{ asset('images/icono01.png') }}">
-                    </img>
-                </div>
-            </div>
-            @endguest
         </div>
     </div>
 </section>

@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Cliente;
 
-use App\Contrato;
-use App\ContratosReservaciones as CR;
-use App\Habitacion;
+use App\Models\Contrato;
+use App\Models\ContratosReservaciones as CR;
+use App\Models\Habitacion;
 use App\Helpers\LogHelper;
 use App\Http\Controllers\Controller;
-use App\Region;
-use App\Reservacion;
+use App\Models\Region;
+use App\Models\Reservacion;
 use Auth;
 use Carbon\Carbon;
 use DB;

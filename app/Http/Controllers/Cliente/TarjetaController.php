@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Cliente;
 
-use App\Banco;
+use App\Models\Banco;
 use App\Http\Controllers\Controller;
-use App\Tarjeta;
+use App\Models\Tarjeta;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
