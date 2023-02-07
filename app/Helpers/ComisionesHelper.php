@@ -13,6 +13,7 @@ class ComisionesHelper
 {
     public function generar_comisiones($contrato_id = null, $convenio_id = null)
     {
+        // dd($contrato_id, $convenio_id);
         $contrato = Contrato::findOrFail($contrato_id);
         $convenio = Convenio::findOrFail($contrato->convenio_id);
         $fecha    = Carbon::now();

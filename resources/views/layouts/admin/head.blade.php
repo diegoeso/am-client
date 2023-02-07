@@ -15,7 +15,7 @@
         font-size: 10px;
     }
 </style>
-@switch($color_system)
+{{-- @switch($color_system)
     @case('white')
         @php
             $theme =  asset('back/css/colors/blue.css') 
@@ -57,7 +57,7 @@
             $theme =  asset('back/css/colors/purple-dark-2.css') 
         @endphp
         @break
-        {{-- @case('mx')
+        @case('mx')
         @php
             $theme =  asset('back/css/colors/mx.css') 
         @endphp
@@ -66,13 +66,12 @@
         @php
             $theme =  asset('back/css/colors/navidad.css') 
         @endphp
-        @break --}}
+        @break 
     @default
         @php
             $theme =  asset('back/css/colors/blue.css') 
-            // $theme =  asset('back/css/colors/navidad.css') 
         @endphp
-@endswitch
+@endswitch --}}
 <link href="{{ asset('plugins/toastr/build/toastr.css') }}" rel="stylesheet"/>
 {{--
 <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet"/>
@@ -86,14 +85,14 @@
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet"/>
-@if (env('APP_PAIS_ID') == 7 || Auth::user()->role == 'client')
+{{-- @if (env('APP_PAIS_ID') == 7 || Auth::user()->role == 'client')
     <link href="{{ asset('back/css/colors/blue.css') }}" id="theme" rel="stylesheet"/>
-@else
+@else --}}
 {{--
 <link href="{{ asset('back/css/colors/navidad.css') }}" id="theme" rel="stylesheet"/>
 --}}
-<link href="{{ $theme }}" id="theme" rel="stylesheet"/>
-@endif
+<link href="{{ asset('back/css/colors/mx.css') }}" id="theme" rel="stylesheet"/>
+{{-- @endif --}}
 <script>
     var baseuri='{!!asset('');!!}';
     var baseadmin='{!!asset('').'admin/'!!}';

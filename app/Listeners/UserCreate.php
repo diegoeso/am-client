@@ -82,6 +82,9 @@ class UserCreate
         $user->alerta_enviada     = 0;
         $user->redes_sociales     = 0;
 
+        //pagina y sistema por el cual se registro el cliente
+        $user->system_register = $event->user['system_register'];
+
         $user->save();
         Auth::loginUsingId($user->id);
         return $user;

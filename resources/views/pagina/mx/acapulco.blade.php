@@ -65,7 +65,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-4 col-sm-6 ftco-animate mb-3">
                             <div class="project-destination">
-                                <a class="img" href="{{ route('grupo.acapulco',['junio', '2023-06-22'] ) }}" style="background-image: url({{ asset('images/acapulco_jun.png') }});">
+                                <a class="img" href="{{ route('grupo.acapulco',['sep', '12', '2023-02-15'] ) }}" style="background-image: url({{ asset('images/acapulco_sep.png') }});">
                                   {{--   <div class="text">
                                     <span>
                                         Seleccionar
@@ -76,7 +76,7 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 ftco-animate mb-3">
                             <div class="project-destination">
-                                <a class="img" href="{{ route('grupo.acapulco',['septiembre', '2023-09-21'] ) }}" style="background-image: url({{ asset('images/acapulco_sep.png') }});">
+                                <a class="img" href="{{ route('grupo.acapulco',['oct', '14', '2023-02-15'] ) }}" style="background-image: url({{ asset('images/acapulco_oct.png') }});">
                                   {{--   <div class="text">
                                     <span>
                                         Seleccionar
@@ -87,7 +87,7 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 ftco-animate mb-3">
                             <div class="project-destination">
-                                <a class="img" href="{{ route('grupo.acapulco',['noviembre', '2023-11-09'] ) }}" style="background-image: url({{ asset('images/acapulco_nov.png') }});">
+                                <a class="img" href="{{ route('grupo.acapulco',['nov', '17', '2023-02-15'] ) }}" style="background-image: url({{ asset('images/acapulco_nov.png') }});">
                                    {{--  <div class="text">
                                         <span>
                                             Seleccionar
@@ -98,7 +98,7 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-6 ftco-animate mb-3">
                             <div class="project-destination">
-                                <a class="img" href="{{ route('grupo.acapulco',['diciembre', '2023-12-14'] ) }}" style="background-image: url({{ asset('images/acapulco_dic.png') }});">
+                                <a class="img" href="{{ route('grupo.acapulco',['dic', '20', '2023-02-15'] ) }}" style="background-image: url({{ asset('images/acapulco_dic.png') }});">
                                 {{--     <div class="text">
                                         <span>
                                             Seleccionar

@@ -27,8 +27,8 @@ Route::post('login-custom', [AuthController::class, 'login_customer'])->name('lo
 Route::get('password/reset/{email}/{token}', [Auth\ResetPasswordController::class, 'showResetForm']);
 
 Route::get('/', function () {
-    // return view('pagina.mx.index');
-    return redirect('productos');
+    return view('pagina.mx.index');
+    // return redirect('productos');
 });
 Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('nosotros', [PaginaController::class, 'nosotros'])->name('nosotros');
@@ -79,8 +79,11 @@ Route::resource('destinos', DestinoController::class);
 //tienda en linea
 Route::resource('tienda', CompraController::class);
 Route::get('tienda-grupo', [CompraController::class, 'grupo'])->name('tienda.grupo');
+Route::post('tienda-grupo', [CompraController::class, 'store_grupo'])->name('tienda.store_grupo');
+
 // agregar usuario, tarjeta y crear contrato
 Route::get('metodo-de-pago', [CompraController::class, 'metodo_de_pago'])->name('metodo_pago');
+Route::get('agregar-metodo-de-pago', [CompraController::class, 'metodo_de_pago_grupo'])->name('metodo_pago_grupo');
 
 // Finalizar compra
 Route::get('finalizar-compra/{id}', [CompraController::class, 'finalizar_compra'])->name('finalizar_compra');

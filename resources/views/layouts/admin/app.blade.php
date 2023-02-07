@@ -239,9 +239,6 @@
         </style>
     </head>
     <body class="fix-header card-no-border logo-center">
-        <canvas style="position: absolute;">
-        </canvas>
-        @include('admin.elementos.views.efecto_nieve')
         <div class="preloader">
             <svg class="circular" viewbox="25 25 50 50">
                 <circle class="path" cx="50" cy="50" fill="none" r="20" stroke-miterlimit="10" stroke-width="2">

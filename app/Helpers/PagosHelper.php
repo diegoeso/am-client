@@ -539,12 +539,16 @@ class PagosHelper
      * @param  date $fecha_primer_cobro
      * @return array $pagos
      */
-    public function generar_pagos_quincenales($contrato_id, $pagos_por_contrato = 36, $fecha_primer_cobro = null)
+    public function generar_pagos_quincenales($contrato_id, $pagos_por_contrato = null, $fecha_primer_cobro = null)
     {
+        if ($pagos_por_contrato == null) {
+            $pagos_por_contrato = 36;
+        }
 
-        $contratoData       = Contrato::findOrFail($contrato_id);
-        $estancia           = Estancia::findOrFail($contratoData->estancia_id);
-        $pagos_por_contrato = $estancia->cuotas;
+        // dd($pagos_por_contrato, $fecha_primer_cobro);
+        $contratoData = Contrato::findOrFail($contrato_id);
+        $estancia     = Estancia::findOrFail($contratoData->estancia_id);
+        // $pagos_por_contrato = (isset($segmentos)) ? $segmentos : $estancia->cuotas;
 
         if (!empty($fecha_primer_cobro) || isset($fecha_primer_cobro)) {
             $dt = Carbon::create($fecha_primer_cobro);
@@ -557,6 +561,7 @@ class PagosHelper
             }
         }
 
+        // dd($dt->format('Y-m-d'));
         $cont  = 0;
         $pagos = [];
 

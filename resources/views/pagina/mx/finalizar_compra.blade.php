@@ -40,7 +40,7 @@
                         ¡Disfruta de este y otros beneficios que {{ env('APP_NAME') }} tiene para ti!
                     </p>
                     <div class="text-center mt-3">
-                        <img src="{{ asset('images/icono02.png') }}" alt="" style="width: 20%;">
+                        <img src="{{ asset('images/am/icono.png') }}" alt="" style="width: 20%;">
                     </div>
                 </div>
             </div>

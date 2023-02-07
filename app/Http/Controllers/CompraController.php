@@ -43,7 +43,7 @@ class CompraController extends Controller
     public $manejador_de_fecha;
     protected $comisiones;
     protected $pagos;
-
+    public $grupo_acapulco;
     public function __construct()
     {
         $this->session      = session()->get('activo');
@@ -55,6 +55,12 @@ class CompraController extends Controller
         $this->payment = new OpenpayPayment;
 
         $this->middleware('auth')->only('finalizar_compra');
+
+        $this->grupo_acapulco = array(
+            'adulto'  => 6970,
+            'menor'   => 3570,
+            'infante' => 1280,
+        );
     }
 
     public function validar_form(Request $request, $id = null)
@@ -521,7 +527,7 @@ class CompraController extends Controller
      * @param  $tarjeta
      * @return $contrato
      */
-    public function generar_contrato($estancia, $user, $tarjeta)
+    public function generar_contrato($estancia, $user, $tarjeta, $total = null, $request = null)
     {
         // dd($estancia, $user, $tarjeta, $user_s);
         $est     = Estancia::findOrFail($estancia);
@@ -529,21 +535,23 @@ class CompraController extends Controller
         $success = false;
         $fecha   = Carbon::now();
 
-        $contrato                                  = new Contrato;
-        $contrato->user_id                         = $user;
-        $contrato->convenio_id                     = config('app.convenio_id', 685028);
-        $contrato->estancia_id                     = $est->id;
-        $contrato->tarjeta_id                      = $tarjeta;
-        $contrato->paquete                         = $est->title;
-        $contrato->estatus                         = 'comprado';
-        $contrato->precio_de_compra                = $est->precio;
-        $contrato->pago_con_nomina                 = 0;
-        $contrato->pago_con_otras_tarjetas         = 0;
-        $contrato->estatus_de_pagos                = 0;
-        $contrato->padre_id                        = 246;
-        $contrato->noches                          = $est->noches;
-        $contrato->adultos                         = $est->adultos;
-        $contrato->ninos                           = $est->ninos;
+        $contrato                          = new Contrato;
+        $contrato->user_id                 = $user;
+        $contrato->convenio_id             = config('app.convenio_id', 685028);
+        $contrato->estancia_id             = $est->id;
+        $contrato->tarjeta_id              = $tarjeta;
+        $contrato->paquete                 = $est->title;
+        $contrato->estatus                 = 'comprado';
+        $contrato->precio_de_compra        = (isset($total)) ? $total : $est->precio;
+        $contrato->pago_con_nomina         = 0;
+        $contrato->pago_con_otras_tarjetas = 0;
+        $contrato->estatus_de_pagos        = 0;
+        $contrato->padre_id                = 246;
+        $contrato->noches                  = $est->noches;
+
+        $contrato->adultos                         = (isset($request->adultos)) ? $request->adultos : $est->adultos;
+        $contrato->ninos                           = (isset($request->menores)) ? $request->menores : $est->ninos;
+        $contrato->juniors                         = (isset($request->infantes)) ? $request->infantes : $est->juniors;
         $contrato->divisa                          = $est->divisa;
         $contrato->created                         = $fecha;
         $contrato->modified                        = $fecha;
@@ -565,7 +573,7 @@ class CompraController extends Controller
         $contrato->alerta_compra_enviada_a         = $fecha;
         $contrato->fecha_primer_segmento           = $fecha;
         $contrato->fecha_primer_descuento_contrato = $fecha;
-        $contrato->pagos                           = 0;
+        $contrato->pagos                           = (isset($request->segmentos)) ? $request->segmentos : $est->cuotas;
         $contrato->cantidad_pagos_hechos           = 0;
 
         if ($contrato->save()) {
@@ -737,7 +745,9 @@ class CompraController extends Controller
      */
     public function grupo(Request $request)
     {
-        dd($request->all(), $info_grupo);
+        $precio_final = 0;
+
+        // dd($request->all(), $this->grupo_acapulco);
         $validate = $this->validar_form($request);
         if ($validate->fails()) {
             return response()->json(['success' => false, 'errors' => $validate->errors()]);
@@ -764,15 +774,28 @@ class CompraController extends Controller
                 $pass             = $this->get_password($request->password);
                 $user['password'] = $pass['password'];
             }
-            $user['clave']       = base64_encode($request->password);
-            $user['pass_hash']   = bcrypt($request->password);
-            $user['cp']          = $request->cp;
-            $user['estado']      = $request->estado;
-            $user['ciudad']      = $request->colonia;
-            $user['provincia']   = $request->delegacion;
-            $user['direccion']   = $request->direccion;
-            $user['estancia_id'] = $request->estancia_id;
-            $user['convenio_id'] = config('app.convenio_id', 685028);
+            $user['clave']           = base64_encode($request->password);
+            $user['pass_hash']       = bcrypt($request->password);
+            $user['cp']              = $request->cp;
+            $user['estado']          = $request->estado;
+            $user['ciudad']          = $request->colonia;
+            $user['provincia']       = $request->delegacion;
+            $user['direccion']       = $request->direccion;
+            $user['estancia_id']     = $request->estancia_id;
+            $user['convenio_id']     = config('app.convenio_id', 685028);
+            $user['system_register'] = config('app.system_register', 'am');
+
+            /**
+             * Informacion adicional para el calculo del precio final
+             */
+            $user['adultos']  = $request->adultos;
+            $user['infantes'] = $request->infantes;
+            $user['menores']  = $request->menores;
+
+            $user['title']        = $request->title;
+            $user['fecha']        = $request->fecha;
+            $user['segmentos']    = $request->segmentos;
+            $user['fecha_inicio'] = $request->fecha_inicio;
 
             if (!Auth::check()) {
 
@@ -805,7 +828,7 @@ class CompraController extends Controller
              */
             $intento_compra     = $this->intento_de_compra(Auth::user(), $user);
             $user['intento_id'] = $intento_compra->id;
-            $data['card']       = route('metodo_pago');
+            $data['card']       = route('metodo_pago_grupo');
             $data['success']    = true;
 
             Session::put('user', $user);
@@ -819,98 +842,151 @@ class CompraController extends Controller
         // dd($data);
         return response()->json($data);
     }
+
+    public function metodo_de_pago_grupo()
+    {
+        $data = session('user');
+        $info = $this->grupo_acapulco;
+
+        // dd($data, $info);
+        $tarjetas = Tarjeta::where('user_id', Auth::user()->id)->get();
+        $user     = Auth::user();
+        $estancia = Estancia::findOrFail($data['estancia_id']);
+        $bancos   = Banco::where('paise_id', 1)->get();
+
+        // dd($tarjets, $user, $estancia);
+        return view('pagina.mx.add_card_db_grupo', compact('user', 'estancia', 'tarjetas', 'bancos', 'data', 'info'));
+
+        // Openpay
+        // $data     = session('user');
+        // $tarjetas = Tarjeta::where('user_id', Auth::user()->id)->get();
+        // $user     = Auth::user();
+        // $estancia = Estancia::findOrFail($data['estancia_id']);
+        // // $bancos   = Banco::where('paise_id', 1)->get();
+
+        // // dd($tarjets, $user, $estancia);
+        // return view('pagina.mx.add_card_db', compact('user', 'estancia', 'tarjetas'));
+
+    }
+
+    /**
+     * Se trabaja con los datos sin generar el cargo del enganche directamente desde la pagina web
+     */
+    public function store_grupo(Request $request)
+    {
+
+        // dd($request->all());
+        $data['success'] = false;
+        $validate        = $this->validar_form_card($request);
+        if ($validate->fails()) {
+            $data['errors'] = $validate->errors();
+
+            return response()->json($data);
+        }
+
+        $user        = session('user');
+        $estancia_id = $user['estancia_id'];
+        $intento_id  = $user['intento_id'];
+
+        $estancia = Estancia::findOrFail($estancia_id);
+
+        /**
+         * Datos de usuario a realizar el cargo
+         * se pasan a la pasarela como customer para enlazar el cargo
+         */
+        $data['user']['nombre']    = Auth::user()->nombre;
+        $data['user']['apellidos'] = Auth::user()->apellidos;
+        $data['user']['telefono']  = Auth::user()->telefono;
+        $data['user']['email']     = Auth::user()->username;
+
+        /**
+         * Datos de la tarjeta capturados en el formulario de metodo de pago
+         */
+        $data['tarjeta']['holder_name']      = $request->titular;
+        $data['tarjeta']['card_number']      = $request->numero_tarjeta;
+        $data['tarjeta']['expiration_month'] = $request->mes;
+        $data['tarjeta']['expiration_year']  = $request->anio;
+        $data['tarjeta']['cvv2']             = $request->cvv2;
+        $data['tarjeta']['banco_id']         = $request->banco;
+        // $data['red_bancaria']                = $request->red_bancaria;
+        $data['amount']          = $estancia->enganche_especial;
+        $data['description']     = 'Pago inicial Beneficios Vacacionales';
+        $data['tarjeta']['type'] = $request->red_bancaria;
+        // $data['tarjeta']['brand']     = $res['cargo']->card->brand;
+        // $data['tarjeta']['bank_name'] = $res['cargo']->card->bank_name;
+        // $data['tarjeta']['bank_code'] = $res['cargo']->card->bank_code;
+        // $data['tarjeta']['token_id']  = $request->token_id;
+
+        /**
+         * Validamos que la tarjeta ingresada exista; si existe se regresa el objeto para obtener el id
+         * Caso contrario de crea un nuevo registro de la tarjeta
+         */
+        if ($this->validar_tarjeta_cliente($data['tarjeta'])) {
+            $tarjeta = $this->validar_tarjeta_cliente($data['tarjeta']);
+        } else {
+            /**
+             * Registramos la tarjeta en la base de datos
+             */
+            $tarjeta = $this->crear_tarjeta($data['tarjeta']);
+        }
+
+        // dd($tarjeta);
+
+        /**
+         * Generacion del contrato
+         */
+        $contrato = $this->generar_contrato($estancia->id, Auth::user()->id, $tarjeta->id, $request->total, $request->segmentos);
+        // dd($contrato);
+        if ($contrato) {
+            /**
+             * Si se proceso el pago generamos el segmento 0 de enganche del contrato asociado
+             */
+            $this->pagos->cobro_pago_engache($contrato, 'Pendiente');
+
+            /**
+             * Se generan los pagos asociados al contrato
+             */
+
+            // dd($request->primer_descuento, $request->segmentos);
+            $pagos = $this->pagos->generar_pagos_quincenales($contrato->id, $request->segmentos, $request->primer_descuento);
+            /**
+             * Generamos las comisiones correspondientes
+             */
+            // $comisiones = $this->comisiones->generar_comisiones($contrato->id);
+
+            // dd($comisiones);
+            /**
+             * Actualizamos el registro de intentos de compra
+             * Si se finalizo la compra el estatus lo pasamos a 1 en caso contrario sirve para enviar marketing digital ofreciendo el producto hasta terminar el registro
+             */
+            $this->actualizar_intento_compra($intento_id);
+
+            try {
+                /**
+                 * Enviamos la notificacion de un nuevo registro de compra en linea
+                 */
+                Mail::to('dsanchez@pacifictravels.mx')->send(new NotificacionNuevoRegistro($contrato));
+
+                /**
+                 * Se envia el contrato al cliente registrado
+                 */
+                $contrato_pdf = $this->contrato_pdf->obtener_contrato_pdf_mx($contrato->id);
+                Mail::to(Auth::user()->username)->send(new EnviarContrato($contrato));
+            } catch (\Exception $e) {
+                Log::error('No se pudo enviar el pdf del contrato: ' . $contrato->id);
+            }
+
+            // $data['auth']    = Auth::loginUsingId($user_id);
+            $data['url']     = route('finalizar_compra', $contrato->id);
+            $data['success'] = true;
+
+            $data['pagos'] = $pagos;
+            // $data['comisiones'] = $comisiones;
+
+        }
+        // }
+
+        return response()->json($data);
+    }
+
 }
-
-// public function create_order_checkout(Request $request)
-// {
-//     $data['success'] = false;
-//     $validate        = $this->validar_form_card($request);
-//     if ($validate->fails()) {
-//         return response()->json(['success' => false, 'errors' => $validate->errors()]);
-//     }
-//     $user     = session('user');
-//     $estancia = $user['estancia_id'];
-
-//     if ($request->tarjeta_id) {
-//         $tarjeta                = Tarjeta::findOrFail($request->tarjeta_id);
-//         $mes                    = ($tarjeta->mes <= 9) ? '0' . $tarjeta->mes : $tarjeta->mes;
-//         $tarjeta['expiration']  = $mes . '/' . substr($tarjeta->ano, 2);
-//         $tarjeta['card_number'] = $tarjeta->numero;
-//         $tarjeta['cvv2']        = $tarjeta->cvv2;
-//         $tarjeta['auth']        = true;
-
-//         if ($tarjeta->tipo == 'Debito') {
-//             $tarjeta['type'] = 'DEBITCARD';
-//         } else {
-//             $tarjeta['type'] = 'CREDITCARD';
-//         }
-//     }
-
-//     if (Auth::check()) {
-//         if ($request->titular || $request->numero_tarjeta) {
-//             $tarjeta    = event(new CreateCard($request, Auth::user()->id));
-//             $tarjeta_id = $tarjeta[0]['id'];
-//         } else {
-//             $tarjeta_id = $request->tarjeta_id;
-//         }
-
-//         $user_id  = Auth::user()->id;
-//         $username = Auth::user()->username;
-//     } else {
-//         $user     = event(new CreateUser(session('user')));
-//         $user_id  = $user[0]['id'];
-//         $username = $user[0]['username'];
-//         Mail::to($username)->send(new RegistroCliente($user[0]));
-//         $tarjeta    = event(new CreateCard($request, $user_id));
-//         $tarjeta_id = $tarjeta[0]['id'];
-
-//     }
-
-//     $contrato = $this->generar_contrato($estancia, $user_id, $tarjeta_id);
-//     if ($contrato) {
-//         $pagos      = $this->pagos->generar_pagos_quincenales($contrato->id, $request->primer_descuento);
-//         $comisiones = $this->comisiones->generar_comisiones($contrato->id);
-
-//         Mail::to('dsanchez@pacifictravels.mx')->send(new NotificacionNuevoRegistro($contrato));
-
-//         try {
-//             $contrato_pdf = $this->contrato_pdf->obtener_contrato_pdf_mx($contrato->id);
-
-//             Mail::to($username)->send(new EnviarContrato($contrato));
-//         } catch (Exception $e) {
-//             Log::error('No se pudo enviar el pdf del contrato: ' . $contrato->id);
-//         }
-
-//         $data['auth']    = Auth::loginUsingId($user_id);
-//         $data['url']     = route('finalizar_compra', $contrato->id);
-//         $data['success'] = true;
-
-//         $data['pagos']      = $pagos;
-//         $data['comisiones'] = $comisiones;
-
-//     }
-
-//     return response()->json($data);
-// }
-
-/**
- * Viejo metodo de accion
- */
-// public function metodo_de_pago()
-// {
-
-//     if (Auth::check()) {
-//         $tarjetas = Tarjeta::where('user_id', Auth::user()->id)->get();
-//     } else {
-//         $tarjetas = false;
-//     }
-
-//     if (Auth::check()) {
-//         $user     = Auth::user();
-//         $estancia = Estancia::findOrFail($user['estancia_id']);
-//         $bancos   = Banco::where('paise_id', 1)->get();
-//         return view('pagina.mx.add_card', compact('user', 'bancos', 'estancia', 'tarjetas'));
-//     }
-
-//     abort(419);
-// }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Cliente;
 
-use App\Models\Contrato;
 use App\Helpers\PagosHelper;
 use App\Http\Controllers\Controller;
+use App\Models\Contrato;
 use App\Models\Pago;
 use Auth;
 use Illuminate\Http\Request;
@@ -103,7 +103,8 @@ class HomeController extends Controller
                 return $contratos->id;
             })
             ->addColumn('convenio', function ($contratos) {
-                return $contratos->convenio->empresa_nombre;
+                // return $contratos->convenio->empresa_nombre;
+                return 'AM';
             })
             ->addColumn('estancia', function ($contratos) {
                 return $contratos->estancia->title;

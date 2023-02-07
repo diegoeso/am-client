@@ -7,15 +7,15 @@
 @section('content')
 @php
     switch ($title) {
-        case 'junio':
-           $img = asset('images/estancias/acapulco_jun.png');
+        case 'sep':
+           $img = asset('images/estancias/acapulco_sep.png');
             break;
         
-        case 'septiembre':
-          $img = asset('images/estancias/acapulco_sep.png');
+        case 'oct':
+          $img = asset('images/estancias/acapulco_oct.png');
             break;
         
-        case 'noviembre':
+        case 'nov':
            $img = asset('images/estancias/acapulco_nov.png');
             break;
         
@@ -52,10 +52,10 @@
                                                 Selecciona la fecha ideal para ti
                                             </label>
                                             <select name="fecha_inicio" id="fecha_inicio" class="form-control">
-                                                <option value="junio" @if ($fecha == "2023-06-22") selected @endif>22 al 25 de Junio, 2023</option>
-                                                <option value="septiembre" @if ($fecha == "2023-09-21") selected @endif>21 al 24 de Septiembre, 2023</option>
-                                                <option value="noviembre" @if ($fecha == "2023-11-09") selected @endif>09 al 12 de Noviembre, 2023</option>
-                                                <option value="diciembre" @if ($fecha == "2023-12-14") selected @endif>14 al 17 de Diciembre, 2023</option>
+                                                <option value="sep" @if ($title == "sep") selected @endif>07 al 10 de septiembre, 2023</option>
+                                                <option value="oct" @if ($title == "oct") selected @endif>19 al 22 octubre, 2023</option>
+                                                <option value="nov" @if ($title == "nov") selected @endif>09 al 12 noviembre, 2023</option>
+                                                <option value="dic" @if ($title == "dic") selected @endif>14 al 17 diciembre, 2023</option>
                                             </select>
                                         </div>
                                         <div class="col-md-10 form-group">
@@ -125,6 +125,9 @@
                         <div class="col-lg-8 col-md-12">
                             @csrf
                             <input name="estancia_id" type="hidden" value="{{ $estancia->id }}"/>
+                            <input type="hidden" value="{{ $title }}" name="title">
+                            <input type="hidden" value="{{ $fecha }}" name="fecha">
+                            <input type="hidden" value="{{ $segmentos }}" name="segmentos">
                             @guest()
                             <div class="row" id="form_data">
                                 <div class="col-lg-4 col-md-6 form-group">
@@ -315,15 +318,15 @@
                 var select = $(this).val();
 
                 switch (select) {
-                    case 'junio':
-                       $img = "{{ asset('images/estancias/acapulco_jun.png') }}";
+                    case 'sep':
+                       $img = "{{ asset('images/estancias/acapulco_sep.png') }}";
                         break;
                     
-                    case 'septiembre':
-                      $img = "{{ asset('images/estancias/acapulco_sep.png') }}";
+                    case 'oct':
+                      $img = "{{ asset('images/estancias/acapulco_oct.png') }}";
                         break;
                     
-                    case 'noviembre':
+                    case 'nov':
                        $img = "{{ asset('images/estancias/acapulco_nov.png') }}";
                         break;
                     

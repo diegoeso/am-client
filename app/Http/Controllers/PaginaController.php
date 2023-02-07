@@ -299,16 +299,15 @@ class PaginaController extends Controller
      * @param  [type] $segmentos
      * @return view
      */
-    public function grupo_acapulco($title, $fecha, $segmentos = null)
+    public function grupo_acapulco($title, $segmentos = null, $fecha = null)
     {
         if (env('APP_ENV') == 'local') {
-
             $estancia_id = 37742;
         } else {
             $estancia_id = 37741;
         }
 
         $estancia = Estancia::findOrFail($estancia_id);
-        return view('pagina.mx.detalle_grupo', compact('estancia', 'title', 'fecha'));
+        return view('pagina.mx.detalle_grupo', compact('estancia', 'title', 'fecha', 'segmentos'));
     }
 }
