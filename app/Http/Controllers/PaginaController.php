@@ -301,11 +301,11 @@ class PaginaController extends Controller
      */
     public function grupo_acapulco($title, $segmentos = null, $fecha = null)
     {
-        if (env('APP_ENV') == 'local') {
-            $estancia_id = 37742;
-        } else {
-            $estancia_id = 37741;
-        }
+        // if (env('APP_ENV') == 'local') {
+        // $estancia_id = 37742;
+        // } else {
+        $estancia_id = 37741;
+        // }
 
         $estancia = Estancia::findOrFail($estancia_id);
         return view('pagina.mx.detalle_grupo', compact('estancia', 'title', 'fecha', 'segmentos'));

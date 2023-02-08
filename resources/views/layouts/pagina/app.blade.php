@@ -5,9 +5,25 @@
         <meta charset="utf-8"/>
         <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
         <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+        <meta name="description" content="Amando a México ofrece una gran varidad de destinos y alojamientos para que planees las vacaciones de tus sueños en comodos pagos quincenales"/>
+        <meta name="keywords" content="amando, mexico, amando a mexico, viajes, grupos, playa, turismo, alojamientos, hoteles, estancias, vacacionaes"/>
+        <meta name="author" content="ISW Diego Enrique Sanchez Ordoñez" />
+        <meta name="copyright" content="ISW Diego Enrique Sanchez - Beneficios Vacacionales" />
+        <meta http-equiv="cache-control" content="no-cache"/>
+        <meta name="robots" content="follow"/>
+
+
+        <!-- Open Graph data -->
+        <meta property="og:title" content="Amando a México" />
+        <meta property="og:type" content="Viajes" />
+        <meta property="og:url" content="https://amandoamexico.com.mx" />
+        <meta property="og:image" content="{{ asset('images/am_bag.png') }}" />
+        <meta property="og:description" content="Amando a México ofrece una gran varidad de destinos y alojamientos para que planees las vacaciones de tus sueños en comodos pagos quincenales" />
+
+
         <meta content="{{ csrf_token() }}" name="csrf-token"/>
         <title>
-                {{ env('APP_NAME_OPT',  'Amando a México') }}
+                {{ env('APP_NAME',  'Amando a México') }}
         </title>
         <link href="{{ asset('images/am/icono.png') }} " rel="icon"/>
         <!-- Bootstrap CSS -->
